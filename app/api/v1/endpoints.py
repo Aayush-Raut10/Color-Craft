@@ -1,6 +1,6 @@
 from pathlib import Path
 import uuid
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, HTTPException
 from fastapi.responses import FileResponse
 from app.schemas.coloring_book import ColoringBookRequest
 from app.services.gemini_service import generate_page
@@ -24,17 +24,20 @@ def generate_coloring_book(request: ColoringBookRequest) -> FileResponse:
 
     folder.mkdir()
 
-    for page in range(request.pages):
+    try:
+        for page in range(request.pages):
 
-        image = generate_page(
-            theme=request.theme,
-            age=request.age,
-            page_number=page + 1,
-            output_dir=folder,
-        )
+            image = generate_page(
+                theme=request.theme,
+                age=request.age,
+                page_number=page + 1,
+                output_dir=folder,
+            )
 
-        images.append(image)
-
+            images.append(image)
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=status.HTTP_402_PAYMENT_REQUIRED, detail="Free limit reached.")
     pdf_path = PDF_DIR / f"{uuid.uuid4()}.pdf"
 
     images_to_pdf(images, pdf_path)

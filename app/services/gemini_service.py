@@ -31,7 +31,7 @@ def generate_page(theme: str, age: int, page_number: int, output_dir: Path):
 
             Note: Different images from previous pages
             """
-
+    
     image = client.text_to_image(
         prompt,
         model="black-forest-labs/FLUX.1-schnell"
