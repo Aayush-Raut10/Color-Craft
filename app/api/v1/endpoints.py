@@ -3,7 +3,7 @@ import uuid
 from fastapi import APIRouter, status, HTTPException
 from fastapi.responses import FileResponse
 from app.schemas.coloring_book import ColoringBookRequest
-from app.services.gemini_service import generate_page
+from app.services.huggingface_service import generate_page
 from app.services.pdf_service import images_to_pdf
 
 
