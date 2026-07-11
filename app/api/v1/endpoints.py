@@ -35,9 +35,9 @@ def generate_coloring_book(request: ColoringBookRequest) -> FileResponse:
             )
 
             images.append(image)
-    except Exception as e:
-        print("Free limit reached in render console")
+    except Exception:
         raise HTTPException(status_code=status.HTTP_402_PAYMENT_REQUIRED, detail="Free limit reached.")
+    
     pdf_path = PDF_DIR / f"{uuid.uuid4()}.pdf"
 
     images_to_pdf(images, pdf_path)

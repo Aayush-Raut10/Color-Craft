@@ -30,8 +30,10 @@ form.addEventListener("submit", async (e) => {
         });
 
         if (!response.ok) {
-            console.log(response)
-            throw new Error("You have reached the free 1-month limit for generating coloring book.");
+            console.log(response.text)
+            console.log(response.body)
+            console.log(response.json)
+            throw new Error("You have reached the free 1-month limit for generating coloring book.Try after 1 month");
         }
 
         const blob = await response.blob();
