@@ -31,7 +31,7 @@ form.addEventListener("submit", async (e) => {
 
         if (!response.ok) {
             const error = await response.json();
-            console.log(error)
+            console.log(error);
             throw new Error(error.detail);
         }
         const blob = await response.blob();
