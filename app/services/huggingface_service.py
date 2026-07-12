@@ -31,21 +31,15 @@ def generate_page(theme: str, age: int, page_number: int, output_dir: Path):
 
             Note: Different images from previous pages
             """
-    try:
-
-        print(f"Generating page {page_number} - Theme: {theme}")
-
-        image = client.text_to_image(
-            prompt,
-            model="runwayml/stable-diffusion-v1-5"  # model="black-forest-labs/FLUX.1-schnell"
-        )
-
-        output_path = output_dir / f"page_{page_number}.png"
-
-        image.save(output_path)
-
-        return output_path
     
-    except Exception as e:
-        print(f"✗ Error generating page {page_number}: {str(e)}")
-        return None
+    image = client.text_to_image(
+        prompt,
+        model="runwayml/stable-diffusion-v1-5"  # model="black-forest-labs/FLUX.1-schnell"
+    )
+
+    output_path = output_dir / f"page_{page_number}.png"
+
+    image.save(output_path)
+
+    return output_path
+    
