@@ -34,7 +34,7 @@ def generate_page(theme: str, age: int, page_number: int, output_dir: Path):
     
     image = client.text_to_image(
         prompt,
-        model="black-forest-labs/FLUX.1-schnell"
+        model="stabilityai/stable-diffusion-xl-base-1.0" # model="black-forest-labs/FLUX.1-schnell"
     )
 
     output_path = output_dir / f"page_{page_number}.png"
