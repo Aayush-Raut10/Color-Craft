@@ -34,7 +34,7 @@ def generate_page(theme: str, age: int, page_number: int, output_dir: Path):
     
     image = client.text_to_image(
         prompt,
-        model = "runwayml/stable-diffusion-v1-5"  # model="black-forest-labs/FLUX.1-schnell"
+        model="black-forest-labs/FLUX.1-schnell"
     )
 
     output_path = output_dir / f"page_{page_number}.png"

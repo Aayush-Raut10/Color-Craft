@@ -36,7 +36,6 @@ def generate_coloring_book(request: ColoringBookRequest) -> FileResponse:
 
             images.append(image)
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=status.HTTP_429_TOO_MANY_REQUESTS, detail="You have reached the free 1-month limit."
 )
     
